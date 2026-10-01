@@ -20,6 +20,8 @@
 
 char main_string[50];
 uint32_t main_counter = 0;
+static int task1_id = 0;
+static int task2_id = 1;
 
 static void main_task(void *param){
 
@@ -36,14 +38,12 @@ static void PrintStringTask(void *params){
 		case 0:
 			do{
 				print_str("This task is created with ID 0\r\n");
-				for (int i = 0; i<1000000;i++);
-				//vTaskDelay(1000/portTICK_RATE_MS);
+				vTaskDelay(1000/portTICK_RATE_MS);
 			}while(1);
 		case 1:
 			do{
 				print_str("This task is created with ID 1\r\n");
-				for (int i = 0; i<1000000;i++);
-				//vTaskDelay(1000/portTICK_RATE_MS);
+				vTaskDelay(1000/portTICK_RATE_MS);
 			}while(1);
 	}
 }
@@ -52,8 +52,8 @@ void main_user(){
 	util_init();
 
 	xTaskCreate(main_task,"Main Task", configMINIMAL_STACK_SIZE + 100, NULL, tskIDLE_PRIORITY + 2, NULL);
-	xTaskCreate(PrintStringTask, "Task 1", configMINIMAL_STACK_SIZE + 100, (void *)0, tskIDLE_PRIORITY + 1, NULL);
-	xTaskCreate(PrintStringTask, "Task 2", configMINIMAL_STACK_SIZE + 100, (void *)1, tskIDLE_PRIORITY + 1, NULL);
+	xTaskCreate(PrintStringTask, "Task 1", configMINIMAL_STACK_SIZE + 100, &task1_id, tskIDLE_PRIORITY + 2, NULL);
+	xTaskCreate(PrintStringTask, "Task 2", configMINIMAL_STACK_SIZE + 100, &task2_id, tskIDLE_PRIORITY + 1, NULL);
 
 	vTaskStartScheduler();
 
