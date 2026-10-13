@@ -52,6 +52,12 @@
 
 /* USER CODE END FunctionPrototypes */
 
+/* Hook prototypes */
+void vApplicationIdleHook(void);
+
+/* USER CODE BEGIN 2 */
+/* USER CODE END 2 */
+
 /* Private application code --------------------------------------------------*/
 /* USER CODE BEGIN Application */
 

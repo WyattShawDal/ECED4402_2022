@@ -56,12 +56,12 @@ static void PrintStringTask(void *params){
 		case 0:
 			do{
 				print_str("This task is created with ID 0\r\n");
-				vTaskDelay(1000/portTICK_RATE_MS);
+				vTaskDelay(100/portTICK_RATE_MS);
 			}while(1);
 		case 1:
 			do{
 				print_str("This task is created with ID 1\r\n");
-				vTaskDelay(1000/portTICK_RATE_MS);
+				vTaskDelay(100/portTICK_RATE_MS);
 			}while(1);
 	}
 }
